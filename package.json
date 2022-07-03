@@ -1,0 +1,26 @@
+{
+  "name": "onl29_js_diploma",
+  "version": "1.0.0",
+  "description": "module Js",
+  "source": "src/index.html",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "main": "index.js",
+  "scripts": {
+    "style": "sass --watch src/scss/index.scss src/scss/index.css",
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VictoriaRus/onl29_js_diploma.git"
+  },
+  "author": "Vika",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VictoriaRus/onl29_js_diploma/issues"
+  },
+  "homepage": "https://github.com/VictoriaRus/onl29_js_diploma#readme",
+  "devDependencies": {
+    "parcel": "^2.6.2"
+  }
+}
