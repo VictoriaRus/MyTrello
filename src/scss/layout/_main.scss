@@ -1,0 +1,33 @@
+.column {
+    width: 320px;
+}
+
+.column-title {
+    border-radius: 18px;
+    padding: 3rem;
+}
+
+.todo-color {
+    background-color: rgba(16, 119, 13, 0.2);
+    border: 1px solid rgb(16, 119, 13);
+}
+
+.progress-color {
+    background-color: rgba(86, 86, 86, 0.2);
+    border: 1px solid rgb(86, 86, 86);
+}
+
+.done-color {
+    background-color: rgba(0, 149, 255, 0.2);
+    border: 1px solid rgb(0, 149, 255);
+}
+
+.button {
+    border-radius: 18px;
+    padding: 2rem;
+    font-size: 1.8rem;
+}
+
+.list {
+    flex-grow: 1;
+}

@@ -1,3 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
 
+html {
+  font-size: 10px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.5rem;
+}
+
+.container {
+  width: 1200px;
+  padding: 0 15px;
+  margin: auto;
+}
+
+.wrap {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.time {
+  padding: 15px 30px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 30px;
+}
+
+.show {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.modal-content {
+  margin: 15% auto;
+  width: 600px;
+  padding: 2rem;
+  border-radius: 18px;
+  background-color: rgba(16, 119, 13, 0.6);
+  border: 1px solid rgb(16, 119, 13);
+}
+
+.card-todo {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 1rem;
+  padding: 1rem;
+  border-radius: 18px;
+  padding: 3rem;
+}
+
+.col-todo {
+  background-color: rgba(16, 119, 13, 0.2);
+  border: 1px solid rgb(16, 119, 13);
+}
+
+.header__wrap {
+  background-color: rgba(153, 50, 204, 0.2);
+  border: 1px solid rgb(153, 50, 204);
+  border-radius: 32px;
+  padding: 3rem;
+}
+
+.column {
+  width: 320px;
+}
+
+.column-title {
+  border-radius: 18px;
+  padding: 3rem;
+}
+
+.todo-color {
+  background-color: rgba(16, 119, 13, 0.2);
+  border: 1px solid rgb(16, 119, 13);
+}
+
+.progress-color {
+  background-color: rgba(86, 86, 86, 0.2);
+  border: 1px solid rgb(86, 86, 86);
+}
+
+.done-color {
+  background-color: rgba(0, 149, 255, 0.2);
+  border: 1px solid rgb(0, 149, 255);
+}
+
+.button {
+  border-radius: 18px;
+  padding: 2rem;
+  font-size: 1.8rem;
+}
+
+.list {
+  flex-grow: 1;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(248, 248, 248);
+  border-radius: 18px;
+}
 
 /*# sourceMappingURL=index.css.map */

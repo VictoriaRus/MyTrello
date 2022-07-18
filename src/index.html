@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +8,60 @@
     <title>Document</title>
     <link rel="stylesheet" href="./scss/index.css">
 </head>
+
 <body>
-    
+    <header class="header">
+        <div class="container">
+            <div class="wrap header__wrap">
+                <h1 class="logo">Trello</h1>
+                <div class="time" id="time"></div>
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <div class="container">
+            <div class="wrap main__wrap">
+                <div class="column todo">
+                    <h3 class="column-title todo-color">TODO: <span id="count-todos">0</span></h3>
+                    <div class="list" id="list-todo">
+
+                    </div>
+                    <button class="button todo-color" id="addTodo">Add todo</button>
+                </div>
+                <div class="column in-progress">
+                    <h3 class="column-title progress-color">IN-PROGRESS: <span id="count-progress">0</span></h3>
+                    <div class="list" id="list-progress">
+
+                    </div>
+                </div>
+                <div class="column done">
+                    <h3 class="column-title done-color">DONE:  <span id="count-done">0</span></h3>
+                    <div class="list" id="list-done">
+
+                    </div>
+                    <button class="button done-color">Delete all</button>
+                </div>
+
+                <div class="modal hidden" id="modal">
+                    <div class="modal-content">
+                        <div class="modal-form">
+                            <input type="text" id="title" placeholder="Title">
+                            <textarea id="description" cols="30" rows="10" placeholder="Description"></textarea>
+                        </div>
+                        <div class="buttons">
+                            <select name="select" id="select">
+                                <option>Choose a user</option>
+                            </select>
+                            <button id="cancel">Cancel</button>
+                            <button id="confirm">Confirm</button>
+                            <button id="update" class="hidden">Update</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
     <script type="module" src="./js/index.js"></script>
 </body>
+
 </html>

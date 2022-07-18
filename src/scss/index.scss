@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+
+//base
+@import "base/base";
+
+//components
+@import "components/time";
+@import "components/model-window";
+@import "components/card-todo";
+
+//layout
+@import "layout/header";
+@import "layout/main";
+@import "layout/column";
