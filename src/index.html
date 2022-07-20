@@ -23,23 +23,17 @@
             <div class="wrap main__wrap">
                 <div class="column todo">
                     <h3 class="column-title todo-color">TODO: <span id="count-todos">0</span></h3>
-                    <div class="list" id="list-todo">
-
-                    </div>
+                    <div class="list" id="list-todo"></div>
                     <button class="button todo-color" id="addTodo">Add todo</button>
                 </div>
                 <div class="column in-progress">
                     <h3 class="column-title progress-color">IN-PROGRESS: <span id="count-progress">0</span></h3>
-                    <div class="list" id="list-progress">
-
-                    </div>
+                    <div class="list" id="list-progress"></div>
                 </div>
                 <div class="column done">
                     <h3 class="column-title done-color">DONE:  <span id="count-done">0</span></h3>
-                    <div class="list" id="list-done">
-
-                    </div>
-                    <button class="button done-color">Delete all</button>
+                    <div class="list" id="list-done"></div>
+                    <button class="button done-color" id="delete-all">Delete all</button>
                 </div>
 
                 <div class="modal hidden" id="modal">
@@ -54,10 +48,24 @@
                             </select>
                             <button id="cancel">Cancel</button>
                             <button id="confirm">Confirm</button>
-                            <button id="update" class="hidden">Update</button>
+                            <button id="update">Update</button>
                         </div>
                     </div>
                 </div>
+
+                <div class="warning-modal hidden" id="warning">
+                    <div class="warning-modal-content">
+                        <div class="">
+                           <h3>Warning!</h3>
+                           <p id="text"></p>
+                        </div>
+                        <div class="buttons">
+                            <button id="warning-cancel">Cancel</button>
+                            <button id="warning-confirm">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </main>

@@ -23,6 +23,10 @@ async function getUsers() {
 export function onShowModel() {
     const modal = document.getElementById('modal');
     modal.classList.remove('hidden');
+    const btnUpdate = document.getElementById('update');
+    btnUpdate.classList.add('hidden');
+    const btnConfirm = document.getElementById('confirm');
+    btnConfirm.classList.remove('hidden');
     getUsers();
 }
 
@@ -31,6 +35,11 @@ export function onCancelModel() {
     modal.classList.add('hidden');
     document.getElementById('title').value = "";
     document.getElementById('description').value = "";
+}
+
+export function onCancelWarning() {
+    const warning = document.getElementById('warning');
+    warning.classList.add('hidden');
 }
 
 function saveTodo(todo) {
@@ -78,6 +87,7 @@ export function onCreateTodo() {
 }
 listTodo();
 listProgress();
+listDone();
 
 
 function listTodo() {
@@ -123,12 +133,13 @@ function createCardTodo(id, title, description, user, time) {
 function listProgress() {
     countNewTodos();
     countProgressTodos();
+    countDoneTodos();
     const listTodos = JSON.parse(localStorage.getItem(TODOS_KEY));
     if (listTodos) {
         let base = document.getElementById('list-progress');
         base.innerHTML = '';
         listTodos.forEach(todo => {
-            if (todo.progress) {
+            if (todo.progress && !todo.done) {
                 createCardProgress(todo.id, todo.title, todo.description, todo.user, todo.time);
             }
         });
@@ -156,7 +167,41 @@ function createCardProgress(id, title, description, user, time) {
         </div>`);
 }
 
+function listDone() {
+    countNewTodos();
+    countProgressTodos();
+    countDoneTodos();
+    const listTodos = JSON.parse(localStorage.getItem(TODOS_KEY));
+    if (listTodos) {
+        let base = document.getElementById('list-done');
+        base.innerHTML = '';
+        listTodos.forEach(todo => {
+            if (todo.done && todo.progress) {
+                createCardDone(todo.id, todo.title, todo.description, todo.user, todo.time);
+            }
+        });
+    }
+}
 
+function createCardDone(id, title, description, user, time) {
+    let base = document.getElementById('list-done');
+    base.insertAdjacentHTML("beforeEnd",
+        `<div class="card-todo done-color">
+            <div class="col">
+                <h3 class="title">${title}</h3>
+                <div class="text">
+                    <p>${description}</p>
+                </div>
+                <div class="user">${user}</div>
+            </div>
+            <div class="col">
+                <div class="buttons">
+                    <button id="delete-${id}">DELETE</button>
+                </div>
+                <div class="date">${time}</div>
+            </div>
+        </div>`);
+}
 
 function onShowEditModel() {
     onShowModel();
@@ -173,6 +218,8 @@ export function onEditTodo(event) {
     const oldTodos = JSON.parse(localStorage.getItem(TODOS_KEY));
     oldTodos.forEach(todo => {
         if (theTarget.id == `edit-${todo.id}`) {
+            /*let card = theTarget.parentElement.parentElement.parentElement;
+            card.classList.add('col-warning');*/
             getUsers().then(() => {
                 onShowEditModel();
                 const oldTitle = document.getElementById('title');
@@ -188,17 +235,59 @@ export function onEditTodo(event) {
             deleteTodo();
         } else if (theTarget.id == `move-${todo.id}`) {
             todoId = todo.id;
-            inProgress();
+            inMoveProgress();
         }
     });
 
 }
 
-function inProgress() {
+export function onProgressTodo(event) {
+    const theTarget = event.target;
+    const todos = JSON.parse(localStorage.getItem(TODOS_KEY));
+    todos.forEach(todo => {
+        if (theTarget.id == `back-${todo.id}`) {
+            todoId = todo.id;
+            backTodo();
+        } else if (theTarget.id == `complete-${todo.id}`) {
+            todoId = todo.id;
+            completeTodo();
+        }
+    });
+}
+
+export function onDeleteDoneTodo(event) {
+    const theTarget = event.target;
+    const todos = JSON.parse(localStorage.getItem(TODOS_KEY));
+    todos.forEach(todo => {
+        if (theTarget.id == `delete-${todo.id}`) {
+            todoId = todo.id;
+            deleteTodo();
+        }
+    });
+}
+
+function backTodo() {
     const todos = JSON.parse(localStorage.getItem(TODOS_KEY));
     let updateTodos = todos.map(todo => {
         if (todoId == todo.id) {
-            todo.progress = true;
+            todo.progress = false;
+            return todo;
+        } else {
+            return todo;
+        }
+    });
+
+    saveTodo(updateTodos);
+    listTodo();
+    listProgress();
+    listDone();
+}
+
+function completeTodo() {
+    const todos = JSON.parse(localStorage.getItem(TODOS_KEY));
+    let updateTodos = todos.map(todo => {
+        if (todoId == todo.id) {
+            todo.done = true;
             return todo;
         } else {
             return todo;
@@ -209,6 +298,43 @@ function inProgress() {
     saveTodo(updateTodos);
     listTodo();
     listProgress();
+    listDone();
+}
+
+function inMoveProgress() {
+    const todos = JSON.parse(localStorage.getItem(TODOS_KEY));
+    let updateTodos = todos.map(todo => {
+        if (todoId == todo.id) {
+            let maxCountTodo = countProgressTodos();
+            if (maxCountTodo < 3) {
+                todo.progress = true;
+            } else {
+                showWarning("Сначало надо выполнитe текущее прежде чем ещё добавить одно дело.");
+                //*нажимаем confirm */
+                
+                /*if(true){
+                    todo.progress = true;
+                }*/
+            }
+
+            return todo;
+        } else {
+            return todo;
+        }
+    });
+
+    saveTodo(updateTodos);
+    listTodo();
+    listProgress();
+}
+
+
+
+function showWarning(text) {
+    const warning = document.getElementById('warning');
+    let p = document.getElementById('text');
+    p.innerHTML = text;
+    warning.classList.remove('hidden');
 }
 
 function editTodo() {
@@ -250,7 +376,31 @@ function deleteTodo() {
     saveTodo(todos);
     onCancelModel();
     listTodo();
+    listDone();
 }
+
+export function onWarning() {
+    showWarning("Вы точно хотите удолить всё?");
+    const btnWarningConfirm = document.getElementById('warning-confirm');
+    btnWarningConfirm.addEventListener("click", onDeleteDoneList);
+}
+
+export function onDeleteDoneList() {
+    const todos = JSON.parse(localStorage.getItem(TODOS_KEY));
+    let newTodos = todos.filter(todo => {
+        if (!todo.done) {
+            return todo;
+        }
+    });
+    saveTodo(newTodos);
+    listTodo();
+    listProgress();
+    listDone();
+    onCancelWarning();
+}
+
+///
+//колличество заданий в колонках
 
 function countNewTodos() {
     const todos = JSON.parse(localStorage.getItem(TODOS_KEY));
@@ -271,13 +421,16 @@ function countProgressTodos() {
     if (todos) {
         let count = 0;
         todos.forEach(todo => {
-            if (todo.progress) {
+            if (todo.progress && !todo.done) {
                 count++;
             }
+
         });
         let countTodos = document.getElementById('count-progress');
         countTodos.innerHTML = count;
+        return count;
     }
+
 }
 
 function countDoneTodos() {
@@ -293,3 +446,4 @@ function countDoneTodos() {
         countTodos.innerHTML = count;
     }
 }
+///

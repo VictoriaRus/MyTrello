@@ -7,6 +7,11 @@ import {
     onCancelModel,
     onCreateTodo,
     onEditTodo,
+    onProgressTodo,
+    onDeleteDoneTodo,
+    onCancelWarning,
+    onWarning,
+   
 } from './add_todo';
 
 window.onload = function () {
@@ -25,3 +30,17 @@ btnConfirm.addEventListener('click', onCreateTodo);
 
 const listTodo = document.getElementById('list-todo');
 listTodo.addEventListener('click', onEditTodo);
+
+const listProgress = document.getElementById('list-progress');
+listProgress.addEventListener('click', onProgressTodo);
+
+const listDone = document.getElementById('list-done');
+listDone.addEventListener('click', onDeleteDoneTodo);
+
+const deleteAll = document.getElementById('delete-all');
+//deleteAll.addEventListener('click', onDeleteDoneList);
+deleteAll.addEventListener('click', onWarning);
+
+const btnCancelWarning = document.getElementById('warning-cancel');
+btnCancelWarning .addEventListener('click', onCancelWarning);
+
