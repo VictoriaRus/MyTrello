@@ -16,7 +16,7 @@ import {
 
 window.onload = function () {
     time();
-    setInterval(time, 10000);
+    setInterval(time, 1000);
 }
 
 const btnAddTodo = document.getElementById('addTodo');
@@ -38,7 +38,6 @@ const listDone = document.getElementById('list-done');
 listDone.addEventListener('click', onDeleteDoneTodo);
 
 const deleteAll = document.getElementById('delete-all');
-//deleteAll.addEventListener('click', onDeleteDoneList);
 deleteAll.addEventListener('click', onWarning);
 
 const btnCancelWarning = document.getElementById('warning-cancel');

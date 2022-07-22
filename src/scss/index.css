@@ -58,7 +58,7 @@ body {
   margin: 15% auto;
   width: 600px;
   padding: 2rem;
-  border-radius: 18px;
+  border-radius: 12px;
   background-color: rgba(16, 119, 13, 0.6);
   border: 1px solid rgb(16, 119, 13);
 }
@@ -77,7 +77,7 @@ body {
   margin: 15% auto;
   width: 300px;
   padding: 2rem;
-  border-radius: 18px;
+  border-radius: 12px;
   background-color: rgba(16, 119, 13, 0.6);
   border: 1px solid rgb(16, 119, 13);
 }
@@ -87,7 +87,7 @@ body {
   justify-content: space-between;
   margin: 2rem 1rem;
   padding: 1rem;
-  border-radius: 18px;
+  border-radius: 12px;
   padding: 3rem;
 }
 
@@ -104,7 +104,7 @@ body {
 .header__wrap {
   background-color: rgba(153, 50, 204, 0.2);
   border: 1px solid rgb(153, 50, 204);
-  border-radius: 32px;
+  border-radius: 12px;
   padding: 3rem;
 }
 
@@ -113,7 +113,7 @@ body {
 }
 
 .column-title {
-  border-radius: 18px;
+  border-radius: 12px;
   padding: 3rem;
 }
 
@@ -133,7 +133,7 @@ body {
 }
 
 .button {
-  border-radius: 18px;
+  border-radius: 12px;
   padding: 2rem;
   font-size: 1.8rem;
 }

@@ -309,14 +309,10 @@ function inMoveProgress() {
             if (maxCountTodo < 3) {
                 todo.progress = true;
             } else {
-                showWarning("Сначало надо выполнитe текущее прежде чем ещё добавить одно дело.");
-                //*нажимаем confirm */
-                
-                /*if(true){
-                    todo.progress = true;
-                }*/
+                showWarning("Сначало надо выполнитe текущее прежде чем ещё добавить одно дело.", () => {
+                    onAddMore();
+                });
             }
-
             return todo;
         } else {
             return todo;
@@ -328,13 +324,30 @@ function inMoveProgress() {
     listProgress();
 }
 
+function onAddMore() {
+    const todos = JSON.parse(localStorage.getItem(TODOS_KEY));
+    let updateTodos = todos.map(todo => {
+        if (todoId == todo.id) {
+            todo.progress = true;
+            return todo;
+        } else {
+            return todo;
+        }
+    });
 
+    saveTodo(updateTodos);
+    listTodo();
+    listProgress();
+    onCancelWarning();
+}
 
-function showWarning(text) {
+function showWarning(text, func) {
     const warning = document.getElementById('warning');
+    warning.classList.remove('hidden');
     let p = document.getElementById('text');
     p.innerHTML = text;
-    warning.classList.remove('hidden');
+    const btnWarningConfirm = document.getElementById('warning-confirm');
+    btnWarningConfirm.addEventListener("click", func, { once: true });
 }
 
 function editTodo() {
@@ -380,9 +393,9 @@ function deleteTodo() {
 }
 
 export function onWarning() {
-    showWarning("Вы точно хотите удолить всё?");
-    const btnWarningConfirm = document.getElementById('warning-confirm');
-    btnWarningConfirm.addEventListener("click", onDeleteDoneList);
+    showWarning("Вы точно хотите удолить всё?", () => {
+        onDeleteDoneList();
+    });
 }
 
 export function onDeleteDoneList() {
@@ -392,15 +405,13 @@ export function onDeleteDoneList() {
             return todo;
         }
     });
+
     saveTodo(newTodos);
     listTodo();
     listProgress();
     listDone();
     onCancelWarning();
 }
-
-///
-//колличество заданий в колонках
 
 function countNewTodos() {
     const todos = JSON.parse(localStorage.getItem(TODOS_KEY));
@@ -413,6 +424,7 @@ function countNewTodos() {
         });
         let countTodos = document.getElementById('count-todos');
         countTodos.innerHTML = count;
+        return count;
     }
 }
 
@@ -444,6 +456,6 @@ function countDoneTodos() {
         });
         let countTodos = document.getElementById('count-done');
         countTodos.innerHTML = count;
+        return count;
     }
 }
-///
