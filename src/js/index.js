@@ -1,18 +1,25 @@
 "use strict"
+
+import { time } from './components/time';
+
 import {
-    time
-} from './time';
-import {
-    onShowModel,
-    onCancelModel,
     onCreateTodo,
     onEditTodo,
     onProgressTodo,
     onDeleteDoneTodo,
-    onCancelWarning,
     onWarning,
-   
-} from './add_todo';
+} from './utils';
+
+import {
+    onShowModel,
+    onCancelModel,
+    onCancelWarning,
+} from './components/model_window';
+
+import {
+    
+} from './drag_n_drop';
+
 
 window.onload = function () {
     time();
@@ -41,5 +48,8 @@ const deleteAll = document.getElementById('delete-all');
 deleteAll.addEventListener('click', onWarning);
 
 const btnCancelWarning = document.getElementById('warning-cancel');
-btnCancelWarning .addEventListener('click', onCancelWarning);
-
+btnCancelWarning.addEventListener('click', onCancelWarning);
+/*
+let list = document.getElementById('list-todo');
+list.addEventListener('mouseover', getCardId);
+*/
