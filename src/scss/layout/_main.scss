@@ -1,33 +1,58 @@
+.main {
+    padding: 32px 0;
+}
+
 .column {
     width: 320px;
 }
 
 .column-title {
-    border-radius: 12px;
-    padding: 3rem;
-}
-
-.todo-color {
-    background-color: rgba(16, 119, 13, 0.2);
-    border: 1px solid rgb(16, 119, 13);
-}
-
-.progress-color {
-    background-color: rgba(86, 86, 86, 0.2);
-    border: 1px solid rgb(86, 86, 86);
-}
-
-.done-color {
-    background-color: rgba(0, 149, 255, 0.2);
-    border: 1px solid rgb(0, 149, 255);
+    display: flex;
+    border-radius: 5px;
+    padding: 2rem 2rem 1rem;
 }
 
 .button {
-    border-radius: 12px;
-    padding: 2rem;
+    margin: 0 10px;
+    border-radius: 5px;
+    border: none;
+    padding: 1.2rem;
     font-size: 1.8rem;
+    background-color: #0079bf;
+    color: #ffffff;
+    cursor: pointer;
+    
+    &:hover {
+        background-color: #026aa7;
+    }
 }
 
 .list {
-    flex-grow: 1;
+    flex-grow: 10;
+}
+
+.icon {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.icon-bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    
+    .btn-icon {
+        margin: 0;
+    }
+
+    &:hover {
+        background-color: #ebecf0;
+
+        .btn-icon {
+            color: #4c4c4c;
+        }
+    }
 }

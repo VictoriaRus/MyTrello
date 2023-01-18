@@ -1,6 +1,7 @@
 "use strict"
 
 export const httpGET = (url) => {
+
     return fetch(url, {
         method: 'GET',
         headers: {
@@ -13,5 +14,6 @@ export const httpGET = (url) => {
             throw new Error('Wrong url');
         }
     })
+    
 }
 

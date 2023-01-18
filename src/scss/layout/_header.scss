@@ -1,7 +1,14 @@
-.header__wrap{
-    background-color: rgba(153, 50, 204, 0.2);
-    border:1px solid rgb(153, 50, 204);
-    border-radius: 12px;
-    padding: 3rem;
-    
+.header {
+    background: #5443ac;
+    padding: 1rem;
+}
+
+.logo {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    letter-spacing: 0.01em;
+    line-height: 50px;
+    color: #ffffff;
 }

@@ -1,6 +1,12 @@
 "use strict"
 
-import { time } from './components/time';
+import {
+    time
+} from './components/time';
+
+import {
+    CustomSelect
+} from './components/customselect';
 
 import {
     onCreateTodo,
@@ -17,7 +23,7 @@ import {
 } from './components/model_window';
 
 import {
-    
+    registerEventsOnCard,
 } from './drag_n_drop';
 
 
@@ -49,7 +55,18 @@ deleteAll.addEventListener('click', onWarning);
 
 const btnCancelWarning = document.getElementById('warning-cancel');
 btnCancelWarning.addEventListener('click', onCancelWarning);
-/*
-let list = document.getElementById('list-todo');
-list.addEventListener('mouseover', getCardId);
-*/
+
+let cards = document.querySelectorAll('.card');
+
+cards.forEach((card) => {
+    registerEventsOnCard(card);
+});
+
+//select
+let animalSelect = new CustomSelect({
+    elem: document.getElementById('animal-select')
+});
+
+document.addEventListener('select', function (event) {
+    document.getElementById('result').innerHTML = event.detail.value;
+});

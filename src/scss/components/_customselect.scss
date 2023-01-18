@@ -1,0 +1,70 @@
+.customselect {
+  width: 468px;
+  font-size: 14px;
+  display: inline-block;
+}
+
+.customselect .title-select {
+  position: relative;
+  border: none;
+  border-bottom: 1px solid #b3b3b3;
+  border-radius: 5px;
+  background: white;
+  width: 468px;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.title-select {
+  &::before {
+    position: absolute;
+    content: "\f107";
+    font-family: "Font Awesome 6 free";
+    font-size: 12px;
+    font-weight: 600;
+    vertical-align: middle;
+    right: 10px;
+    top: 12px;
+  }
+}
+
+.customselect li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.customselect li:nth-child(even) {
+  background-color: #f0f8ff;
+}
+
+.customselect li:hover {
+  background-color: #0079bf;
+  color: #ffffff;
+}
+
+.customselect ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+  position: absolute;
+  z-index: 1000;
+  background: white;
+  width: 468px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.customselect.open ul {
+  display: block;
+}
+
+#select {
+  height: 257px;
+  overflow-y: scroll;
+  text-align: left;
+}

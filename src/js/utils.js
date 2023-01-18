@@ -1,8 +1,17 @@
 "use strict"
 
-import { httpGET } from './api';
-import {URL, TODOS_KEY} from './CONST';
-import { date } from './components/time';
+import {
+    httpGET
+} from './api';
+
+import {
+    URL,
+    TODOS_KEY
+} from './CONST';
+
+import {
+    date
+} from './components/time';
 
 import {
     onCancelModel,
@@ -21,14 +30,19 @@ import {
     listDone,
 } from './components/lists';
 
+import {
+    registerEventsOnCard,
+} from './drag_n_drop';
+
 let todoId;
 
-export  async function getUsers() {
+export async function getUsers() {
     let select = document.getElementById('select');
+    
     return await httpGET(URL).then(res => {
         const users = res;
         users.forEach(user => {
-            let option = document.createElement("option");
+            let option = document.createElement("li");
             option.value = user.name;
             option.innerHTML = user.name;
             select.appendChild(option);
@@ -41,8 +55,8 @@ export  async function getUsers() {
 export function onCreateTodo() {
     const title = document.getElementById('title').value;
     const description = document.getElementById('description').value;
-    const user = document.getElementById('select').value;
-
+    const user = document.getElementById('title-select').textContent;
+    
     const oldTodos = JSON.parse(localStorage.getItem(TODOS_KEY));
 
     const newTodo = {
@@ -60,10 +74,16 @@ export function onCreateTodo() {
 
     document.getElementById('title').value = "";
     document.getElementById('description').value = "";
-    document.getElementById('select').value = "";
+    document.getElementById('title-select').textContent ="Choose a user";
 
     onCancelModel();
     listTodo();
+
+    let cards = document.querySelectorAll('.card');
+ 
+    cards.forEach((card) => {
+        registerEventsOnCard(card);
+    });
 }
 
 function saveTodo(todo) {
@@ -85,7 +105,7 @@ listDone();
 export function editTodo() {
     const newTitle = document.getElementById('title').value;
     const newDescription = document.getElementById('description').value;
-    const newSelect = document.getElementById('select').value;
+    const newSelect = document.getElementById('title-select').textContent;
     const todos = JSON.parse(localStorage.getItem(TODOS_KEY));
 
     let updateTodos = todos.map(todo => {
@@ -105,20 +125,28 @@ export function editTodo() {
 
     document.getElementById('title').value = "";
     document.getElementById('description').value = "";
-    document.getElementById('select').value = "";
+    document.getElementById('title-select').textContent ="Choose a user";
 
     onCancelModel();
     listTodo();
+
+    let cards = document.querySelectorAll('.card');
+    console.log(cards);
+    cards.forEach((card) => {
+        registerEventsOnCard(card);
+    });
 }
 
 ///delete
 
 function deleteTodo() {
     const todos = JSON.parse(localStorage.getItem(TODOS_KEY));
+
     const index = todos.findIndex(todo => todo.id === todoId);
     if (index !== -1) {
         todos.splice(index, 1);
     }
+    
     saveTodo(todos);
     onCancelModel();
     listTodo();
@@ -126,13 +154,14 @@ function deleteTodo() {
 }
 
 export function onWarning() {
-    showWarning("Вы точно хотите удолить всё?", () => {
+    showWarning("Are you sure you want to delete everything?", () => {
         onDeleteDoneList();
     });
 }
 
 export function onDeleteDoneList() {
     const todos = JSON.parse(localStorage.getItem(TODOS_KEY));
+
     let newTodos = todos.filter(todo => {
         if (!todo.done) {
             return todo;
@@ -151,14 +180,15 @@ export function onDeleteDoneList() {
 export function onEditTodo(event) {
     const theTarget = event.target;
     const oldTodos = JSON.parse(localStorage.getItem(TODOS_KEY));
+
     oldTodos.forEach(todo => {
         if (theTarget.id == `edit-${todo.id}`) {
             getUsers().then(() => {
                 onShowEditModel();
                 const oldTitle = document.getElementById('title');
                 const oldDescription = document.getElementById('description');
-                const OldSelect = document.getElementById('select');
-                OldSelect.value = todo.user;
+                const OldSelect = document.getElementById('title-select');
+                OldSelect.textContent = todo.user;
                 oldTitle.value = todo.title;
                 oldDescription.value = todo.description;
                 todoId = todo.id;
@@ -177,6 +207,7 @@ export function onEditTodo(event) {
 export function onProgressTodo(event) {
     const theTarget = event.target;
     const todos = JSON.parse(localStorage.getItem(TODOS_KEY));
+    
     todos.forEach(todo => {
         if (theTarget.id == `back-${todo.id}`) {
             todoId = todo.id;
@@ -191,6 +222,7 @@ export function onProgressTodo(event) {
 export function onDeleteDoneTodo(event) {
     const theTarget = event.target;
     const todos = JSON.parse(localStorage.getItem(TODOS_KEY));
+    
     todos.forEach(todo => {
         if (theTarget.id == `delete-${todo.id}`) {
             todoId = todo.id;
@@ -201,6 +233,7 @@ export function onDeleteDoneTodo(event) {
 
 function backTodo() {
     const todos = JSON.parse(localStorage.getItem(TODOS_KEY));
+
     let updateTodos = todos.map(todo => {
         if (todoId == todo.id) {
             todo.progress = false;
@@ -218,6 +251,7 @@ function backTodo() {
 
 function completeTodo() {
     const todos = JSON.parse(localStorage.getItem(TODOS_KEY));
+
     let updateTodos = todos.map(todo => {
         if (todoId == todo.id) {
             todo.done = true;
@@ -236,13 +270,14 @@ function completeTodo() {
 
 export function inMoveProgress() {
     const todos = JSON.parse(localStorage.getItem(TODOS_KEY));
+
     let updateTodos = todos.map(todo => {
         if (todoId == todo.id) {
             let maxCountTodo = countProgressTodos();
             if (maxCountTodo < 3) {
                 todo.progress = true;
             } else {
-                showWarning("Сначало надо выполнитe текущее прежде чем ещё добавить одно дело.", () => {
+                showWarning("First you need to complete the current one before adding another one.", () => {
                     onAddMore();
                 });
             }
@@ -259,6 +294,7 @@ export function inMoveProgress() {
 
 function onAddMore() {
     const todos = JSON.parse(localStorage.getItem(TODOS_KEY));
+
     let updateTodos = todos.map(todo => {
         if (todoId == todo.id) {
             todo.progress = true;

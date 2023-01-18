@@ -1,18 +1,57 @@
 .card-todo {
+    margin: 10px;
+    padding: 1rem;
+    border-radius: 5px;
+    border-bottom: 1px solid #b3b3b3;
+    text-align: left;
+    background-color: #ffffff;
+    cursor: move;
+
+    &:hover {
+        background-color: #f4f5f7;
+    }
+}
+
+.card-todo__header {
     display: flex;
     justify-content: space-between;
-    margin: 2rem 1rem;
-    padding: 1rem;
-    border-radius: 12px;
-    padding: 3rem;
-}
-.col-todo {
-    background-color: rgba(16, 119, 13, 0.2);
-    border: 1px solid rgb(16, 119, 13);
 }
 
-.col-warning {
-    background-color: rgba(179, 53, 18, 0.2);
-    border: 1px solid rgb(179, 53, 18);
+.title {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1f2024;
+    margin-bottom: 16px;
 }
 
+.text {
+    margin-bottom: 8px;
+    color: #121315;
+    
+    p {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 16px;
+        letter-spacing: 0.02em;
+    }
+}
+
+.date {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.01em;
+    color: #494a50;
+    margin-bottom: 10px;
+}
+
+.user {
+    margin-bottom: 16px;
+}

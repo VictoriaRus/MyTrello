@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>My Trello</title>
     <link rel="stylesheet" href="./scss/index.css">
 </head>
 
@@ -21,47 +21,55 @@
     <main class="main">
         <div class="container">
             <div class="wrap main__wrap">
-                <div class="column todo">
-                    <h3 class="column-title todo-color">TODO: <span id="count-todos">0</span></h3>
+                <div class="column">
+                    <h3 class="column-title">TODO: <span id="count-todos">0</span></h3>
                     <div class="list" id="list-todo"></div>
-                    <button class="button todo-color" id="addTodo">Add todo</button>
+                    <button class="button" id="addTodo"><i class="fa-solid fa-plus icon"></i>Add todo</button>
                 </div>
-                <div class="column in-progress">
-                    <h3 class="column-title progress-color">IN-PROGRESS: <span id="count-progress">0</span></h3>
+                <div class="column">
+                    <h3 class="column-title">IN-PROGRESS: <span id="count-progress">0</span></h3>
                     <div class="list" id="list-progress"></div>
                 </div>
-                <div class="column done">
-                    <h3 class="column-title done-color">DONE:  <span id="count-done">0</span></h3>
+                <div class="column">
+                    <h3 class="column-title ">DONE: <span id="count-done">0</span></h3>
                     <div class="list" id="list-done"></div>
-                    <button class="button done-color" id="delete-all">Delete all</button>
+                    <button class="button" id="delete-all">Delete all</button>
                 </div>
 
                 <div class="modal hidden" id="modal">
                     <div class="modal-content">
                         <div class="modal-form">
-                            <input type="text" id="title" placeholder="Title">
-                            <textarea id="description" cols="30" rows="10" placeholder="Description"></textarea>
+                            <input type="text" id="title" placeholder="Enter a title for this card">
+                            <textarea id="description" cols="30" rows="20" placeholder="Enter description"></textarea>
                         </div>
                         <div class="buttons">
+                            <!--
                             <select name="select" id="select">
                                 <option>Choose a user</option>
                             </select>
-                            <button id="cancel">Cancel</button>
-                            <button id="confirm">Confirm</button>
-                            <button id="update">Update</button>
+                            -->
+
+                            <div id="animal-select" class="customselect">
+                                <button class="title-select" id="title-select">Choose a user</button>
+                                <ul name="select" id="select"></ul>
+                            </div>
+
+                            <button class="btn btn-border" id="cancel">Cancel</button>
+                            <button class="btn btn-fill" id="confirm">Confirm</button>
+                            <button class="btn btn-fill" id="update">Update</button>
                         </div>
                     </div>
                 </div>
 
                 <div class="warning-modal hidden" id="warning">
                     <div class="warning-modal-content">
-                        <div class="">
-                           <h3>Warning!</h3>
-                           <p id="text"></p>
+                        <div class="warning-test">
+                            <h3 class="warning-title">Warning!</h3>
+                            <p id="text"></p>
                         </div>
-                        <div class="buttons">
-                            <button id="warning-cancel">Cancel</button>
-                            <button id="warning-confirm">Confirm</button>
+                        <div class="warning-buttons">
+                            <button id="warning-cancel" class="btn btn-border">Cancel</button>
+                            <button id="warning-confirm" class="btn btn-fill">Confirm</button>
                         </div>
                     </div>
                 </div>
@@ -69,7 +77,22 @@
             </div>
         </div>
     </main>
+    
+<!--
+    <div>Последний результат: <span id="result">...</span></div>
+    <div id="animal-select" class="customselect">
+        <button class="title-select">Choose a user</button>
+        <ul>
+            <li data-value="bird">Птицы</li>
+            <li data-value="fish">Рыбы</li>
+            <li data-value="animal">Звери</li>
+            <li data-value="dino">Динозавры</li>
+            <li data-value="simplest">Одноклеточные</li>
+        </ul>
+    </div>
+-->
     <script type="module" src="./js/index.js"></script>
+
 </body>
 
 </html>

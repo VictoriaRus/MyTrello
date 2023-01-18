@@ -1,13 +1,11 @@
 "use strict"
-import {
-    TODOS_KEY
-} from './CONST';
+import { TODOS_KEY } from './CONST';
 
 import {
     listTodo,
     listProgress,
+    listDone,
 } from './components/lists';
-
 
 let card;
 const empties = document.querySelectorAll('.list');
@@ -17,7 +15,7 @@ cards.forEach((card) => {
     registerEventsOnCard(card);
 });
 
-function registerEventsOnCard(card) {
+export function registerEventsOnCard(card) {
     card.addEventListener('dragstart', dragStart);
     card.addEventListener('dragend', dragEnd);
 }
@@ -29,65 +27,64 @@ for (const empty of empties) {
     empty.addEventListener('drop', dragDrop);
 }
 
-// Drag Functions
-
-function dragStart() {
-    console.log("Start");
-
-    //this.className += ' hold';
+function dragStart(e) {
     card = this;
-    console.log(card);
-    console.log(card.id);
-
-    //e.currentTarget.style.border = "dashed";//
-    //e.dataTransfer.setData("text", e.target.id);//
-    //e.effectAllowed = "move";//
-
-    //setTimeout(() => (this.className = 'invisible'), 0);
+    setTimeout(() => (this.className = 'invisible'), 0);
 }
 
 function dragEnd() {
-    console.log("End");
-
-    //this.className = 'fill';
-    //e.dataTransfer.clearData();//
+    setTimeout(() => (this.className = 'card card-todo'), 0);
 }
 
 function dragOver(e) {
-    //console.log("Over");
     e.preventDefault();
+    e.dataTransfer.dropEffect = "move";
 }
 
 function dragEnter(e) {
-    // console.log("Enter");
     e.preventDefault();
-    this.className += ' hovered';
 }
 
-function dragLeave() {
-    //console.log("Leave");
-    //this.className = 'empty';
+function dragLeave() {}
 
-}
-
-function dragDrop() { //this -> list 
-    console.log("Drop");
-    //this.className = 'empty';
-
-    //this.append(card);
-    console.log(card.id);
+function dragDrop() { 
     const todos = JSON.parse(localStorage.getItem(TODOS_KEY));
+    
     let updateTodos = todos.map(todo => {
+
         if (card.id == todo.id) {
-            todo.progress = true;
+
+            if (this.id === "list-progress") {
+                todo.progress = true;
+                todo.done = false;
+            }
+            if (this.id === "list-done") {
+                todo.progress = true;
+                todo.done = true;
+            }
+            if (this.id === "list-todo") {
+                todo.progress = false;
+                todo.done = false;
+            }
+
             return todo;
+
         } else {
             return todo;
         }
+
     });
 
     localStorage.setItem(TODOS_KEY, JSON.stringify(updateTodos));
 
-     //listTodo(); // Как правильно перерисовать листы после измениния в localStorage?
-     listProgress(); 
+    listTodo();
+    listProgress();
+    listDone();
+
+    let cards = document.querySelectorAll('.card');
+
+    cards.forEach((card) => {
+        registerEventsOnCard(card);
+    });
+
 }

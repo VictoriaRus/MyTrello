@@ -12,6 +12,7 @@ export function onShowModel() {
     btnUpdate.classList.add('hidden');
     const btnConfirm = document.getElementById('confirm');
     btnConfirm.classList.remove('hidden');
+
     getUsers();
 }
 
@@ -28,8 +29,10 @@ export function onShowEditModel() {
 export function onCancelModel() {
     const modal = document.getElementById('modal');
     modal.classList.add('hidden');
+
     document.getElementById('title').value = "";
     document.getElementById('description').value = "";
+    document.getElementById('title-select').textContent ="Choose a user";
 }
 
 export function showWarning(text, func) {
@@ -38,6 +41,7 @@ export function showWarning(text, func) {
     let p = document.getElementById('text');
     p.innerHTML = text;
     const btnWarningConfirm = document.getElementById('warning-confirm');
+    
     btnWarningConfirm.addEventListener("click", func, {
         once: true
     });

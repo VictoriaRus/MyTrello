@@ -4,6 +4,21 @@
     box-sizing: border-box;
     list-style: none;
     text-decoration: none;
+    outline: none;
+}
+
+input,
+textarea,
+select {
+    resize: none;
+    border: none;
+    
+    &:active,
+    &:hover,
+    &:focus {
+        outline: 0;
+        outline-offset: 0;
+    }
 }
 
 html {
@@ -14,6 +29,7 @@ html {
 body {
     font-family: "Open Sans", sans-serif;
     font-size: 1.5rem;
+    background: url("../assets/photo/fon.jpg");
 }
 
 .container {
@@ -26,5 +42,8 @@ body {
     display: flex;
     justify-content: space-between;
     text-align: center;
-    padding: 3rem 0;
+}
+
+.buttons {
+    text-align: end;
 }
