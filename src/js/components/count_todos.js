@@ -1,8 +1,6 @@
 "use strict"
 
-import {
-    TODOS_KEY
-} from "../CONST";
+import { TODOS_KEY } from "../CONST";
 
 export function countNewTodos() {
     const todos = JSON.parse(localStorage.getItem(TODOS_KEY));

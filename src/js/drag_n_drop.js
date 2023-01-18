@@ -1,39 +1,39 @@
 "use strict"
-import { TODOS_KEY } from './CONST';
+import { TODOS_KEY } from "./CONST";
 
 import {
     listTodo,
     listProgress,
     listDone,
-} from './components/lists';
+} from "./components/lists";
 
 let card;
-const empties = document.querySelectorAll('.list');
-let cards = document.querySelectorAll('.card');
+const empties = document.querySelectorAll(".list");
+let cards = document.querySelectorAll(".card");
 
 cards.forEach((card) => {
     registerEventsOnCard(card);
 });
 
 export function registerEventsOnCard(card) {
-    card.addEventListener('dragstart', dragStart);
-    card.addEventListener('dragend', dragEnd);
+    card.addEventListener("dragstart", dragStart);
+    card.addEventListener("dragend", dragEnd);
 }
 
 for (const empty of empties) {
-    empty.addEventListener('dragover', dragOver);
-    empty.addEventListener('dragenter', dragEnter);
-    empty.addEventListener('dragleave', dragLeave);
-    empty.addEventListener('drop', dragDrop);
+    empty.addEventListener("dragover", dragOver);
+    empty.addEventListener("dragenter", dragEnter);
+    empty.addEventListener("dragleave", dragLeave);
+    empty.addEventListener("drop", dragDrop);
 }
 
 function dragStart(e) {
     card = this;
-    setTimeout(() => (this.className = 'invisible'), 0);
+    setTimeout(() => (this.className = "invisible"), 0);
 }
 
 function dragEnd() {
-    setTimeout(() => (this.className = 'card card-todo'), 0);
+    setTimeout(() => (this.className = "card card-todo"), 0);
 }
 
 function dragOver(e) {
@@ -81,7 +81,7 @@ function dragDrop() {
     listProgress();
     listDone();
 
-    let cards = document.querySelectorAll('.card');
+    let cards = document.querySelectorAll(".card");
 
     cards.forEach((card) => {
         registerEventsOnCard(card);

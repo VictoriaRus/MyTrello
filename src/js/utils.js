@@ -1,43 +1,35 @@
 "use strict"
 
-import {
-    httpGET
-} from './api';
+import { httpGET } from "./api";
 
 import {
     URL,
     TODOS_KEY
-} from './CONST';
+} from "./CONST";
 
-import {
-    date
-} from './components/time';
+import { date } from "./components/time";
 
 import {
     onCancelModel,
     onShowEditModel,
     showWarning,
     onCancelWarning,
-} from './components/model_window';
+} from "./components/model_window";
 
-import {
-    countProgressTodos,
-} from './components/count_todos';
+import { countProgressTodos } from "./components/count_todos";
 
 import {
     listTodo,
     listProgress,
     listDone,
-} from './components/lists';
+} from "./components/lists";
 
-import {
-    registerEventsOnCard,
-} from './drag_n_drop';
+import { registerEventsOnCard } from "./drag_n_drop";
 
 let todoId;
 
 export async function getUsers() {
-    let select = document.getElementById('select');
+    let select = document.getElementById("select");
     
     return await httpGET(URL).then(res => {
         const users = res;
@@ -53,9 +45,9 @@ export async function getUsers() {
 ///create
 
 export function onCreateTodo() {
-    const title = document.getElementById('title').value;
-    const description = document.getElementById('description').value;
-    const user = document.getElementById('title-select').textContent;
+    const title = document.getElementById("title").value;
+    const description = document.getElementById("description").value;
+    const user = document.getElementById("title-select").textContent;
     
     const oldTodos = JSON.parse(localStorage.getItem(TODOS_KEY));
 
@@ -72,14 +64,14 @@ export function onCreateTodo() {
     const todosToSave = oldTodos ? [...oldTodos, newTodo] : [newTodo];
     saveTodo(todosToSave);
 
-    document.getElementById('title').value = "";
-    document.getElementById('description').value = "";
-    document.getElementById('title-select').textContent ="Choose a user";
+    document.getElementById("title").value = "";
+    document.getElementById("description").value = "";
+    document.getElementById("title-select").textContent ="Choose a user";
 
     onCancelModel();
     listTodo();
 
-    let cards = document.querySelectorAll('.card');
+    let cards = document.querySelectorAll(".card");
  
     cards.forEach((card) => {
         registerEventsOnCard(card);
@@ -103,9 +95,9 @@ listDone();
 ///edit
 
 export function editTodo() {
-    const newTitle = document.getElementById('title').value;
-    const newDescription = document.getElementById('description').value;
-    const newSelect = document.getElementById('title-select').textContent;
+    const newTitle = document.getElementById("title").value;
+    const newDescription = document.getElementById("description").value;
+    const newSelect = document.getElementById("title-select").textContent;
     const todos = JSON.parse(localStorage.getItem(TODOS_KEY));
 
     let updateTodos = todos.map(todo => {
@@ -123,14 +115,14 @@ export function editTodo() {
 
     saveTodo(updateTodos);
 
-    document.getElementById('title').value = "";
-    document.getElementById('description').value = "";
-    document.getElementById('title-select').textContent ="Choose a user";
+    document.getElementById("title").value = "";
+    document.getElementById("description").value = "";
+    document.getElementById("title-select").textContent ="Choose a user";
 
     onCancelModel();
     listTodo();
 
-    let cards = document.querySelectorAll('.card');
+    let cards = document.querySelectorAll(".card");
     console.log(cards);
     cards.forEach((card) => {
         registerEventsOnCard(card);
@@ -185,9 +177,9 @@ export function onEditTodo(event) {
         if (theTarget.id == `edit-${todo.id}`) {
             getUsers().then(() => {
                 onShowEditModel();
-                const oldTitle = document.getElementById('title');
-                const oldDescription = document.getElementById('description');
-                const OldSelect = document.getElementById('title-select');
+                const oldTitle = document.getElementById("title");
+                const oldDescription = document.getElementById("description");
+                const OldSelect = document.getElementById("title-select");
                 OldSelect.textContent = todo.user;
                 oldTitle.value = todo.title;
                 oldDescription.value = todo.description;

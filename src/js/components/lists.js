@@ -22,8 +22,8 @@ export function listTodo() {
     const listTodos = JSON.parse(localStorage.getItem(TODOS_KEY));
 
     if (listTodos) {
-        let base = document.getElementById('list-todo');
-        base.innerHTML = '';
+        let base = document.getElementById("list-todo");
+        base.innerHTML = "";
 
         listTodos.forEach(todo => {
             if (!todo.progress) {
@@ -43,8 +43,8 @@ export function listProgress() {
     const listTodos = JSON.parse(localStorage.getItem(TODOS_KEY));
 
     if (listTodos) {
-        let base = document.getElementById('list-progress');
-        base.innerHTML = '';
+        let base = document.getElementById("list-progress");
+        base.innerHTML = "";
 
         listTodos.forEach(todo => {
             if (todo.progress && !todo.done) {
@@ -64,8 +64,8 @@ export function listDone() {
     const listTodos = JSON.parse(localStorage.getItem(TODOS_KEY));
 
     if (listTodos) {
-        let base = document.getElementById('list-done');
-        base.innerHTML = '';
+        let base = document.getElementById("list-done");
+        base.innerHTML = "";
 
         listTodos.forEach(todo => {
             if (todo.done && todo.progress) {
