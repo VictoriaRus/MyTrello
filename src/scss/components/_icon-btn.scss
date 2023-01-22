@@ -1,0 +1,42 @@
+.icon {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.icon-bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    @extend %transition;
+    
+    .btn-icon {
+        margin: 0;
+    }
+
+    &:hover {
+        background-color: $color-icon-bg;
+
+        .btn-icon {
+            color: $color-text-light;
+        }
+    }
+}
+
+.btn-icon {
+    font-size: 18px;
+    color: $color-icon;
+    margin-left: 20px;
+    cursor: pointer;
+    @extend %transition;
+
+    &:hover {
+        color: $color-icon-hover;
+    }
+}
+
+.back {
+    transform: scale(-1, 1);
+}

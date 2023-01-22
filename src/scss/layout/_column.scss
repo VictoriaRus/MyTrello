@@ -1,7 +1,22 @@
 .column {
+    width: 320px;
+    min-width: 320px;
+    min-height: 150px;
     display: flex;
     flex-direction: column;
-    background-color: #ebecf0;
+    background-color: $color-primary;
     border-radius: 5px;
     padding-bottom: 10px;
+
+    @include media-mobile {
+        width: 100%;
+        min-width: 100%;
+    }
+}
+
+.column-title {
+    display: flex;
+    border-radius: 5px;
+    padding: 2rem 2rem 1rem;
+    text-transform: uppercase;
 }

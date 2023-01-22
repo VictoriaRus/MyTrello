@@ -2,13 +2,14 @@
     margin: 10px;
     padding: 1rem;
     border-radius: 5px;
-    border-bottom: 1px solid #b3b3b3;
+    border-bottom: 1px solid $color-border;
     text-align: left;
-    background-color: #ffffff;
-    cursor: move;
+    background-color: $color-white;
+    cursor: pointer;
+    @extend %transition;
 
     &:hover {
-        background-color: #f4f5f7;
+        background-color: $color-border-hover;
     }
 }
 
@@ -23,13 +24,14 @@
     font-weight: 800;
     font-size: 14px;
     line-height: 17px;
-    color: #1f2024;
+    text-transform: uppercase;
+    color: $color-text-dark;
     margin-bottom: 16px;
 }
 
 .text {
     margin-bottom: 8px;
-    color: #121315;
+    color: $color-text;
     
     p {
         font-family: "Inter";
@@ -48,7 +50,7 @@
     font-size: 12px;
     line-height: 16px;
     letter-spacing: 0.01em;
-    color: #494a50;
+    color: $color-text-light;
     margin-bottom: 10px;
 }
 

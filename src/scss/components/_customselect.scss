@@ -7,9 +7,9 @@
 .customselect .title-select {
   position: relative;
   border: none;
-  border-bottom: 1px solid #b3b3b3;
+  border-bottom: 1px solid $color-border;
   border-radius: 5px;
-  background: white;
+  background: $color-white;
   width: 468px;
   box-sizing: border-box;
   padding: 10px;
@@ -19,6 +19,7 @@
 }
 
 .title-select {
+  
   &::before {
     position: absolute;
     content: "\f107";
@@ -37,12 +38,12 @@
 }
 
 .customselect li:nth-child(even) {
-  background-color: #f0f8ff;
+  background-color: $color-select;
 }
 
 .customselect li:hover {
-  background-color: #0079bf;
-  color: #ffffff;
+  background-color: $color-button;
+  color: $color-white;
 }
 
 .customselect ul {
@@ -52,7 +53,7 @@
   display: none;
   position: absolute;
   z-index: 1000;
-  background: white;
+  background: $color-white;
   width: 468px;
   border-radius: 5px;
   box-sizing: border-box;

@@ -4,9 +4,9 @@
     font-weight: 600;
     font-size: 14px;
     letter-spacing: 0.08em;
-    color: #ffffff;
+    color: $color-white;
     padding: 16px 32px;
-    background: rgba(255, 255, 255, 0.3);
+    background: $color-background-time;
     border-radius: 5px;
-    border: 1px solid #ffffff;
+    border: 1px solid $color-white;
 }

@@ -1,6 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;700;900&display=swap");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css");
 
+//abstracts
+@import "abstracts/variables";
+@import "abstracts/placeholders";
+@import "abstracts/mixins";
+
 //base
 @import "base/base";
 
@@ -8,6 +13,7 @@
 @import "components/drag-n-drop";
 @import "components/time";
 @import "components/button";
+@import "components/icon-btn";
 @import "components/input";
 @import "components/customselect";
 @import "components/model-window";
