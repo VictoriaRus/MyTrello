@@ -50,13 +50,13 @@ body {
   margin: auto;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .container {
     width: 100%;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .scroll {
     height: calc(100vh - 70.8px);
     overflow-x: scroll;
@@ -423,7 +423,7 @@ select {
   padding: 1rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .header {
     width: 100%;
   }

@@ -1,3 +1,9 @@
+@mixin media-big-tablet {
+    @media (max-width: $tablet-big-width) {
+        @content;
+    }
+}
+
 @mixin media-tablet {
     @media (max-width: $tablet-width) {
         @content;

@@ -37,13 +37,13 @@ body {
     padding: 0 15px;
     margin: auto;
 
-    @include media-tablet {
+    @include media-big-tablet {
         width: 100%;
     }
 }
 
 .scroll {
-    @include media-tablet {
+    @include media-big-tablet {
         height: calc(100vh - 70.8px);
         overflow-x: scroll;
     }
