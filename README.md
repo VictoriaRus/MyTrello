@@ -1,5 +1,7 @@
 # MyTrello
 
+[open MyTrello](https://victoriarus.github.io/MyTrello/)
+
 ### List of technologies
 - JavaScript (Fetch, Drag and Drop);
 - LocalStorage;

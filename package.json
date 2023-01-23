@@ -4,23 +4,26 @@
   "description": "module Js",
   "source": "src/index.html",
   "browserslist": "> 0.5%, last 2 versions, not dead",
-  "main": "index.js",
+  
   "scripts": {
     "style": "sass --watch src/scss/index.scss src/scss/index.css",
     "start": "parcel",
-    "build": "parcel build"
+    "build": "parcel build src/index.html --public-url /MyTrello/",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/VictoriaRus/onl29_js_diploma.git"
+    "url": "git+https://github.com/VictoriaRus/MyTrello.git"
   },
   "author": "Vika",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/VictoriaRus/onl29_js_diploma/issues"
   },
-  "homepage": "https://github.com/VictoriaRus/onl29_js_diploma#readme",
+  "homepage": "https://github.com/Victoriarus.github.io/MyTrello/",
   "devDependencies": {
+    "gh-pages": "^5.0.0",
     "parcel": "^2.6.2"
   }
 }
