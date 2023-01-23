@@ -2,6 +2,10 @@
   width: 468px;
   font-size: 14px;
   display: inline-block;
+
+  @include media-mobile {
+    width: 100%;
+}
 }
 
 .customselect .title-select {
@@ -16,6 +20,10 @@
   margin-bottom: 5px;
   cursor: pointer;
   text-align: left;
+
+  @include media-mobile {
+    width: 100%;
+}
 }
 
 .title-select {
@@ -58,6 +66,10 @@
   border-radius: 5px;
   box-sizing: border-box;
   overflow: hidden;
+
+  @include media-mobile {
+    width: calc(100% - 32px);
+}
 }
 
 .customselect.open ul {
